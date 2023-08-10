@@ -1,0 +1,60 @@
+<h3>Check-out</h3>
+<button class="btn btn-primary" (click)="onClick()">Check-out</button>
+<hr />
+<form (ngSubmit)="onSubmitForm()" #form="ngForm">
+  <label class="mt-2 mb-1" for="fullName" style="display: block"
+    >Full name</label
+  >
+  <input
+    type="text"
+    name="fullName"
+    required
+    minlength="3"
+    placeholder="(minimum 3 characters)"
+    [(ngModel)]="fullName"
+    (ngModelChange)="checkFullName()"
+  />
+
+  <p *ngIf="fullNameCheck === false">
+    Your full name should be longer than 3 characters!
+  </p>
+  <label class="mt-2 mb-1" for="address" style="display: block">Address</label>
+  <input
+    type="text"
+    name="address"
+    required
+    minlength="6"
+    placeholder="(minimum 6 characters)"
+    [(ngModel)]="address"
+    (ngModelChange)="checkAddress()"
+  />
+  <p *ngIf="addressCheck === false">
+    Your address should be longer than 6 characters!
+  </p>
+  <label class="mt-2 mb-1" for="creditCard" style="display: block"
+    >Credit card number</label
+  >
+
+  <input
+    type="text"
+    name="creditCard"
+    required
+    minlength="16"
+    maxlength="16"
+    placeholder="(16-digit number)"
+    [(ngModel)]="creditCard"
+    (keypress)="checkCreditCardNumber($event)"
+    (ngModelChange)="checkCreditCard()"
+  />
+  <p *ngIf="creditCardCheck === false">
+    Your credit card number should be 16-digit number!
+  </p>
+  <div>We'll never share your payment details with anyone else.</div>
+  <input
+    type="submit"
+    [disabled]="form.invalid"
+    class="btn btn-primary mt-3"
+    routerLink="/order-confirm"
+    (click)="onSubmitOrder(fullName, address, creditCard)"
+  />
+</form>

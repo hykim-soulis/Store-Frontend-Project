@@ -1,0 +1,11 @@
+<ul class="py-5">
+  <li
+    *ngFor="let category of categoryObservable$ | async"
+    style="cursor: pointer"
+    routerLink="/product"
+    [queryParams]="{ category: category }"
+    (click)="onSelectCategory(category)"
+  >
+    {{ category }}
+  </li>
+</ul>

@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <div class="row col-md-8 mx-auto">
+    <div class="col-md-6">
+      <img
+        src="{{ item.img_url }}"
+        class="rounded"
+        alt="{{ item.name }}"
+        style="max-width: 100%"
+      />
+    </div>
+    <div class="col-md-6 my-auto">
+      <h3>{{ item.name }}</h3>
+      <h6>${{ item.price }}</h6>
+      <p>{{ item.description }}</p>
+
+      <label for="quantity">Quantity: </label>
+      <input
+        type="number"
+        value="1"
+        min="1"
+        name="quantity"
+        [(ngModel)]="quantity"
+        style="width: 50px; margin-left: 10px"
+      />
+      <button
+        class="btn btn-primary my-3"
+        style="display: block"
+        type="submit"
+        (click)="addProductToCart(quantity, item.product_id)"
+      >
+        Add to cart
+      </button>
+      <a routerLink="/product">← Back to product list</a>
+    </div>
+  </div>
+</div>

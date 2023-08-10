@@ -1,0 +1,50 @@
+<div class="container mb-3">
+  <div class="row col-md-12 mx-auto">
+    <div class="col-md-6 my-auto">
+      <img
+        src="{{ item.img_url }}"
+        class="rounded"
+        alt="{{ item.name }}"
+        style="max-width: 100%"
+      />
+    </div>
+    <div class="col-md-6 my-auto">
+      <h5>{{ item.name }}</h5>
+      <h6>${{ item.price }}</h6>
+
+      <label for="quantity">Quantity: </label>
+      <select
+        name="quantity"
+        style="width: 40px; margin-left: 5px"
+        [value]="item.quantity"
+        [(ngModel)]="item.quantity"
+        (change)="onUpdate(item)"
+      >
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+      </select>
+      <br />
+      <button
+        type="button"
+        class="btn btn-outline-danger btn-sm mt-3"
+        (click)="onDelete(item)"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+  <hr />
+</div>

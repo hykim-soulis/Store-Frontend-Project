@@ -1,0 +1,10 @@
+<div class="row py-5">
+  <div class="col-md-3">
+    <h1>Categories</h1>
+    <app-products-category></app-products-category>
+  </div>
+  <div class="col-md-9">
+    <h1>Product List</h1>
+    <app-product-list (selectCategory)="updateProductList()"></app-product-list>
+  </div>
+</div>

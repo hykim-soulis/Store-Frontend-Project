@@ -1,6 +1,6 @@
 .alert {
   position: fixed;
-  top: 20px;
+  top: 70px;
   right: 20px;
   width: 200px;
   z-index: 5;
@@ -12,7 +12,18 @@
   right: 10px;
   font-size: 12px;
 }
-
-.close {
-  display: none;
+.progress {
+  height: 4px;
+}
+.progress-bar {
+  animation-name: closeTimer;
+  animation-duration: 3s;
+}
+@keyframes closeTimer {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }

@@ -1,4 +1,8 @@
 <div class="container mt-4">
+  <app-add-to-cart-modal
+    *ngIf="addEvent"
+    (close)="immediateCloseModal()"
+  ></app-add-to-cart-modal>
   <div class="row col-md-8 mx-auto">
     <div class="col-md-6">
       <img

@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductItemDetailComponent implements OnInit {
   item: Product;
   quantity: number = 1;
-
+  addEvent: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -48,6 +48,20 @@ export class ProductItemDetailComponent implements OnInit {
     });
   }
 
+  timer = setTimeout(() => {
+    this.addEvent = !this.addEvent;
+    console.log('from item-detail');
+  }, 3000);
+
+  immediateCloseModal() {
+    this.addEvent = !this.addEvent;
+    clearTimeout(this.timer);
+  }
+
+  timerCloseModal() {
+    this.timer;
+  }
+
   addProductToCart(quantity: number, product_id: number) {
     this.cartService.getActiveOrder();
     const checkObs: Observable<OrderProduct> | undefined =
@@ -73,7 +87,8 @@ export class ProductItemDetailComponent implements OnInit {
         console.log(err);
       },
       complete: () => {
-        console.log('complete checking');
+        this.addEvent = !this.addEvent;
+        this.timerCloseModal();
       },
     });
   }

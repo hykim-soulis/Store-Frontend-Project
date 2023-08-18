@@ -48,18 +48,14 @@ export class ProductItemDetailComponent implements OnInit {
     });
   }
 
-  timer = setTimeout(() => {
-    this.addEvent = !this.addEvent;
-    console.log('from item-detail');
-  }, 3000);
-
   immediateCloseModal() {
-    this.addEvent = !this.addEvent;
-    clearTimeout(this.timer);
+    this.addEvent = false;
   }
 
   timerCloseModal() {
-    this.timer;
+    setTimeout(() => {
+      this.addEvent = false;
+    }, 3000);
   }
 
   addProductToCart(quantity: number, product_id: number) {
@@ -87,7 +83,7 @@ export class ProductItemDetailComponent implements OnInit {
         console.log(err);
       },
       complete: () => {
-        this.addEvent = !this.addEvent;
+        this.addEvent = true;
         this.timerCloseModal();
       },
     });

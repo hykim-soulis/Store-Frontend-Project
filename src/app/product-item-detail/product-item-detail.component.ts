@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService, OrderProduct } from '../cart/cart.service';
-import { CartItem } from '../Models/CartItem.model';
-import { Product, ProductResult } from '../Models/product.model';
+import { Product } from '../Models/product.model';
 import { ProductService } from '../products/product.service';
-import { Observable, Subscription } from 'rxjs';
-
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-product-item-detail',
   templateUrl: './product-item-detail.component.html',
@@ -13,7 +12,9 @@ import { Observable, Subscription } from 'rxjs';
 export class ProductItemDetailComponent implements OnInit {
   item: Product;
   quantity: number = 1;
+
   constructor(
+    private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService
   ) {
@@ -28,7 +29,8 @@ export class ProductItemDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProduct(this.productService.selectedProduct.product_id);
+    const id: number = Number(this.route.snapshot.paramMap.get('id')!);
+    this.getProduct(id);
   }
 
   getProduct(product_id: number) {

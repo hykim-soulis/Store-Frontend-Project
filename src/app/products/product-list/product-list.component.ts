@@ -1,7 +1,8 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Product } from '../../Models/product.model';
 import { ProductService } from '../product.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, switchMap, tap } from 'rxjs';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -9,20 +10,24 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class ProductListComponent implements OnInit {
   productObservable$: Observable<Product[]> | null = null;
-  category: string = 'All';
-  constructor(private productService: ProductService) {}
+
+  private _category: string = 'All';
+  @Input()
+  get category(): string {
+    return this._category;
+  }
+
+  set category(value: string) {
+    this._category = value;
+    this.getAllProducts();
+  }
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllProducts();
   }
 
-  getCategory() {
-    this.category = this.productService.selectedCategory;
-  }
   getAllProducts() {
-    this.productObservable$ = this.productService.getAllProducts();
+    this.productObservable$ = this.productService.getAllProducts(this.category);
   }
-  // getAllProductsByCategory() {
-  //   this.productObservable$ = this.productService.getAllProductsByCategory();
-  // }
 }

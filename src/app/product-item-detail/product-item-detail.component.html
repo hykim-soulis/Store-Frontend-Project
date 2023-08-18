@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-6 my-auto">
       <h3>{{ item.name }}</h3>
-      <h6>${{ item.price }}</h6>
+      <h6>{{ item.price | currency }}</h6>
       <p>{{ item.description }}</p>
 
       <label for="quantity">Quantity: </label>

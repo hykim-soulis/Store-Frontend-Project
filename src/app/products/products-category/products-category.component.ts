@@ -22,8 +22,6 @@ export class ProductsCategoryComponent implements OnInit {
   }
 
   onSelectCategory(category: string) {
-    this.productService.selectedCategory = category;
-    console.log('category select', category);
     this.selectCategory.emit(category);
   }
 }

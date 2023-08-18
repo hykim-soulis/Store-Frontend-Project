@@ -12,7 +12,6 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
   selectedProduct: Product;
-  selectedCategory: string;
 
   constructor(private http: HttpClient) {
     this.selectedProduct = {
@@ -23,23 +22,13 @@ export class ProductService {
       img_url: '',
       description: '',
     };
-    this.selectedCategory = 'All';
   }
 
-  getAllProducts() {
+  getAllProducts(category: string) {
     return this.http
-      .get<ProductsResult>(
-        `http://127.0.0.1:8000/product?category=${this.selectedCategory}`
-      )
+      .get<ProductsResult>(`http://127.0.0.1:8000/product?category=${category}`)
       .pipe(map((res) => [...res['data']['products']]));
   }
-  // getAllProductsByCategory() {
-  //   return this.http
-  //     .get<ProductsResult>(
-  //       `http://127.0.0.1:8000/product?category=${this.selectedCategory}`
-  //     )
-  //     .pipe(map((res) => [...res['data']['products']]));
-  // }
 
   getProduct(product_id: number) {
     return this.http

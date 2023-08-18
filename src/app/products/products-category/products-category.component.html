@@ -1,9 +1,11 @@
-<ul class="py-5">
+<ul class="py-5 nav flex-column">
   <li
+    class="nav-link active"
     *ngFor="let category of categoryObservable$ | async"
     style="cursor: pointer"
     routerLink="/product"
     [queryParams]="{ category: category }"
+    routerLinkActive="active"
     (click)="onSelectCategory(category)"
   >
     {{ category }}

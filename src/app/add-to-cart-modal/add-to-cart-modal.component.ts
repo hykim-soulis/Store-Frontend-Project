@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-to-cart-modal',
@@ -6,17 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-to-cart-modal.component.css'],
 })
 export class AddToCartModalComponent implements OnInit {
+  @Input() message: string = '';
+  @Output() close = new EventEmitter<void>();
   constructor() {}
 
   ngOnInit(): void {}
 
-  openModal() {
-    const modalDiv = document.getElementById('addToCartModal');
-    if (modalDiv) modalDiv.classList.add('show');
-  }
+  openModal() {}
 
-  closeModal() {
-    const modalDiv = document.getElementById('addToCartModal');
-    if (modalDiv) modalDiv.classList.remove('show');
+  onCloseModal() {
+    this.close.emit();
   }
 }

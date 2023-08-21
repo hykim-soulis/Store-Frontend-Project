@@ -31,3 +31,39 @@ export class CartItem {
     this.description = description;
   }
 }
+export interface Cart {
+  product_id: number;
+  order_products_id: number;
+  quantity: number;
+  order_id: number;
+  name: string;
+  price: string;
+  category: string;
+  img_url: string;
+  description: string;
+}
+export interface OrderProductResponse {
+  status: string;
+  result?: number;
+  data: {
+    order: OrderProduct;
+    orders: Cart[];
+  };
+}
+export interface OrderResponse {
+  data: {
+    order: Order[];
+  };
+  status: string;
+}
+export interface Order {
+  order_id: number;
+  status: string;
+  user_id: number;
+}
+export interface OrderProduct {
+  order_products_id: number;
+  quantity: number;
+  product_id: number;
+  order_id: number;
+}

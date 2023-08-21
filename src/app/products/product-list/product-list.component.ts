@@ -1,8 +1,7 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../Models/product.model';
 import { ProductService } from '../product.service';
-import { Observable, Subscription, switchMap, tap } from 'rxjs';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -21,7 +20,7 @@ export class ProductListComponent implements OnInit {
     this._category = value;
     this.getAllProducts();
   }
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.getAllProducts();

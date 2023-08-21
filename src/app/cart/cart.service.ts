@@ -1,52 +1,13 @@
 import { Injectable } from '@angular/core';
-import { CartItem } from '../Models/CartItem.model';
+import { OrderResponse, OrderProductResponse } from '../Models/CartItem.model';
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
-
-export interface OrderResponse {
-  data: {
-    order: Order[];
-  };
-  status: string;
-}
-export interface Order {
-  order_id: number;
-  status: string;
-  user_id: number;
-}
-export interface OrderProduct {
-  order_products_id: number;
-  quantity: number;
-  product_id: number;
-  order_id: number;
-}
-
-export interface Cart {
-  product_id: number;
-  order_products_id: number;
-  quantity: number;
-  order_id: number;
-  name: string;
-  price: string;
-  category: string;
-  img_url: string;
-  description: string;
-}
-export interface OrderProductResponse {
-  status: string;
-  result?: number;
-  data: {
-    order: OrderProduct;
-    orders: Cart[];
-  };
-}
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  // cartList: CartItem[] = [];
   totalPrice: number = 0;
   cartId: number | null = null;
 
@@ -62,6 +23,7 @@ export class CartService {
       .pipe(
         map((res) => {
           this.cartId = res.data.order[0]['order_id'];
+          console.log('cartservice🛒', this.cartId);
           return this.cartId;
         })
       );

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from './auth/auth.service';
-import { CartService, Order } from './cart/cart.service';
+import { CartService } from './cart/cart.service';
 
 @Component({
   selector: 'app-root',

@@ -60,7 +60,9 @@ export class ProductItemComponent implements OnInit {
       error: (err) => {
         console.log(err);
       },
-      complete: () => {},
+      complete: () => {
+        console.log('complete');
+      },
     });
   }
 }

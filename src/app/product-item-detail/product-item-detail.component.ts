@@ -60,6 +60,7 @@ export class ProductItemDetailComponent implements OnInit {
   }
 
   addProductToCart(quantity: number, product_id: number) {
+    // if logout redirect to auth
     this.cartService.getActiveOrder();
     const checkObs: Observable<OrderProduct> | undefined =
       this.cartService.getOrderProductById(product_id);

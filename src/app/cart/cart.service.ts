@@ -23,7 +23,6 @@ export class CartService {
       .pipe(
         map((res) => {
           this.cartId = res.data.order[0]['order_id'];
-          console.log('cartservice🛒', this.cartId);
           return this.cartId;
         })
       );
@@ -100,7 +99,6 @@ export class CartService {
         authHeader
       )
       .pipe(map((res) => res['data']['orders']));
-    // tap 이든 map이든 사용해서 price를 string에서 number로 바꿔야함 일단은 타입을 number | string으로 뒀음
   }
 
   deleteItem(product_id: number) {
@@ -112,44 +110,4 @@ export class CartService {
       )
       .pipe(map((res) => res['data']['order']));
   }
-
-  // addToCart(item: CartItem) {
-  //   const idList = this.cartList.map((el) => el.product_id);
-
-  //   if (idList.indexOf(item.product_id) >= 0) {
-  //     this.cartList[idList.indexOf(item.product_id)].quantity += item.quantity;
-  //   } else {
-  //     this.cartList.push(item);
-  //   }
-
-  //   return this.cartList;
-  // }
-
-  // getTotalPrice(): number {
-  //   return this.cartList.length > 0
-  //     ? Math.round(
-  //         this.cartList
-  //           .map((el) => Number(el.price) * el.quantity)
-  //           .reduce((a, b) => a + b) * 100
-  //       ) / 100
-  //     : 0;
-  // }
-
-  // updateCart(item: CartItem) {
-  //   const idList = this.cartList.map((el) => el.product_id);
-  //   this.cartList[idList.indexOf(item.product_id)].quantity = item.quantity;
-  //   this.totalPrice = this.getTotalPrice();
-  // }
-
-  // deleteItem(item: CartItem) {
-  //   const index = this.cartList
-  //     .map((el) => el.product_id)
-  //     .indexOf(item.product_id);
-  //   this.cartList.splice(index, 1);
-  // }
-
-  // clearCart() {
-  //   this.cartList = [];
-  //   return this.cartList;
-  // }
 }

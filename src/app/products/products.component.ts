@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { Observable, of, switchMap, filter } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -8,7 +6,7 @@ import { Observable, of, switchMap, filter } from 'rxjs';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor() {}
 
   public category = 'All';
 

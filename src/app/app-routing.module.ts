@@ -17,11 +17,6 @@ const routes: Routes = [
 
     component: ProductItemDetailComponent,
   },
-  {
-    path: 'addToCart',
-
-    component: AddToCartModalComponent,
-  },
   { path: 'cart', canActivate: [AuthGuard], component: CartComponent },
   { path: '**', redirectTo: '/' },
 ];

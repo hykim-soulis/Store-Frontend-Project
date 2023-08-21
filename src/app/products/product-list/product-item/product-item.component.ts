@@ -5,7 +5,7 @@ import { CartItem } from 'src/app/Models/CartItem.model';
 import { Product } from '../../../Models/product.model';
 import { ProductService } from '../../product.service';
 import { Observable, Subscription } from 'rxjs';
-import { OrderProduct, Order } from 'src/app/cart/cart.service';
+import { OrderProduct } from 'src/app/Models/CartItem.model';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -14,7 +14,7 @@ import { OrderProduct, Order } from 'src/app/cart/cart.service';
 export class ProductItemComponent implements OnInit {
   @Input() item: Product;
   quantity: number;
-
+  addEvent: boolean = false;
   constructor(
     private productService: ProductService,
     private cartService: CartService
@@ -31,13 +31,20 @@ export class ProductItemComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+  immediateCloseModal() {
+    this.addEvent = false;
+  }
 
+  timerCloseModal() {
+    setTimeout(() => {
+      this.addEvent = false;
+    }, 3000);
+  }
   goToProductDetail(item: Product) {
     this.productService.selectedProduct = item;
   }
 
   addProductToCart(quantity: number, product_id: number) {
-    this.cartService.getActiveOrder();
     const checkObs: Observable<OrderProduct> | undefined =
       this.cartService.getOrderProductById(product_id);
     checkObs.subscribe({
@@ -60,7 +67,10 @@ export class ProductItemComponent implements OnInit {
       error: (err) => {
         console.log(err);
       },
-      complete: () => {},
+      complete: () => {
+        this.addEvent = true;
+        this.timerCloseModal();
+      },
     });
   }
 }

@@ -1,4 +1,8 @@
 <div class="card shadow-sm">
+  <app-add-to-cart-modal
+    *ngIf="addEvent"
+    (close)="immediateCloseModal()"
+  ></app-add-to-cart-modal>
   <img
     src="{{ item.img_url }}"
     class="bd-placeholder-img card-img-top"

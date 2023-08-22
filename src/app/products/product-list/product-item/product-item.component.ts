@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { createPublicKey } from 'crypto';
 import { CartService } from 'src/app/cart/cart.service';
 import { CartItem } from 'src/app/Models/CartItem.model';
@@ -6,16 +6,20 @@ import { Product } from '../../../Models/product.model';
 import { ProductService } from '../../product.service';
 import { Observable, Subscription } from 'rxjs';
 import { OrderProduct } from 'src/app/Models/CartItem.model';
+import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css'],
 })
-export class ProductItemComponent implements OnInit {
+export class ProductItemComponent implements OnInit, OnDestroy {
   @Input() item: Product;
   quantity: number;
+  isAuthenticated = false;
+  userSub: Subscription | null = null;
   addEvent: boolean = false;
   constructor(
+    private authService: AuthService,
     private productService: ProductService,
     private cartService: CartService
   ) {
@@ -30,7 +34,11 @@ export class ProductItemComponent implements OnInit {
     this.quantity = 1;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userSub = this.authService.user.subscribe((user) => {
+      this.isAuthenticated = !!user; // !user ? false : true
+    });
+  }
   immediateCloseModal() {
     this.addEvent = false;
   }
@@ -72,5 +80,8 @@ export class ProductItemComponent implements OnInit {
         this.timerCloseModal();
       },
     });
+  }
+  ngOnDestroy(): void {
+    if (this.userSub) this.userSub.unsubscribe();
   }
 }

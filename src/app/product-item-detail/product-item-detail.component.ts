@@ -1,22 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../cart/cart.service';
 import { Product } from '../Models/product.model';
 import { OrderProduct } from '../Models/CartItem.model';
 import { ProductService } from '../products/product.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+
 @Component({
   selector: 'app-product-item-detail',
   templateUrl: './product-item-detail.component.html',
   styleUrls: ['./product-item-detail.component.css'],
 })
-export class ProductItemDetailComponent implements OnInit {
+export class ProductItemDetailComponent implements OnInit, OnDestroy {
   item: Product;
   quantity: number = 1;
+  isAuthenticated = false;
+  userSub: Subscription | null = null;
   addEvent: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private authService: AuthService,
     private cartService: CartService
   ) {
     this.item = {
@@ -30,6 +35,9 @@ export class ProductItemDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userSub = this.authService.user.subscribe((user) => {
+      this.isAuthenticated = !!user; // !user ? false : true
+    });
     const id: number = Number(this.route.snapshot.paramMap.get('id')!);
     this.getProduct(id);
   }
@@ -89,5 +97,9 @@ export class ProductItemDetailComponent implements OnInit {
         this.timerCloseModal();
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.userSub) this.userSub.unsubscribe();
   }
 }

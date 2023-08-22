@@ -29,9 +29,18 @@
         />
       </div>
       <button
-        class="btn btn-primary mt-3"
+        *ngIf="isAuthenticated"
+        class="btn btn-primary my-3"
         type="submit"
         (click)="addProductToCart(quantity, item.product_id)"
+      >
+        Add to cart
+      </button>
+      <button
+        *ngIf="!isAuthenticated"
+        class="btn btn-primary my-3"
+        type="submit"
+        routerLink="/auth"
       >
         Add to cart
       </button>

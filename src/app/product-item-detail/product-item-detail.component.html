@@ -27,10 +27,20 @@
         style="width: 50px; margin-left: 10px"
       />
       <button
+        *ngIf="isAuthenticated"
         class="btn btn-primary my-3"
         style="display: block"
         type="submit"
         (click)="addProductToCart(quantity, item.product_id)"
+      >
+        Add to cart
+      </button>
+      <button
+        *ngIf="!isAuthenticated"
+        class="btn btn-primary my-3"
+        style="display: block"
+        type="submit"
+        routerLink="/auth"
       >
         Add to cart
       </button>

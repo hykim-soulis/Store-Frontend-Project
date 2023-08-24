@@ -15,8 +15,8 @@ import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
 import { CartListComponent } from './cart/cart-list/cart-list.component';
-import { CheckoutFormComponent } from './cart/checkout-form/checkout-form.component';
 import { AddToCartModalComponent } from './add-to-cart-modal/add-to-cart-modal.component';
+import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +31,8 @@ import { AddToCartModalComponent } from './add-to-cart-modal/add-to-cart-modal.c
     HomeComponent,
     AuthComponent,
     CartListComponent,
-    CheckoutFormComponent,
     AddToCartModalComponent,
+    OrderConfirmComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],

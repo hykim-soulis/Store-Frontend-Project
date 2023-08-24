@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { OrderResponse, OrderProductResponse } from '../Models/CartItem.model';
+import {
+  OrderResponse,
+  OrderProductResponse,
+  Cart,
+} from '../Models/CartItem.model';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -109,5 +113,26 @@ export class CartService {
         authHeader
       )
       .pipe(map((res) => res['data']['order']));
+  }
+
+  postToStripe(items: Cart[]) {
+    const authHeader = this.authService.getToken();
+    const options = {
+      headers: {
+        Accept: 'application/json',
+        ...authHeader.headers,
+      },
+    };
+    return this.http
+      .post<{ status: string; url: string }>(
+        `http://127.0.0.1:8000/order/${this.cartId}/checkout-session`,
+        { items: [...items] },
+        options
+      )
+      .pipe(
+        tap((x) => {
+          window.location.assign(x.url);
+        })
+      );
   }
 }

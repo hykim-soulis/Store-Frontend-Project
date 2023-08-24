@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { Observable, switchMap, tap } from 'rxjs';
 import { Cart } from '../Models/CartItem.model';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,17 +13,24 @@ import { Cart } from '../Models/CartItem.model';
 export class CartComponent implements OnInit {
   cartObservable$: Observable<Cart[]> | null = null;
   totalPrice: number = 0;
-
+  items: Cart[] = [];
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.getAllCartItems();
   }
 
+  onClickProceed() {
+    this.cartService.postToStripe(this.items).subscribe();
+    this.cartService.updateOrderStatus().subscribe();
+    this.cartService.createActiveOrder().subscribe();
+  }
+
   getAllCartItems() {
     this.cartObservable$ = this.cartService.getActiveOrder().pipe(
       switchMap((id) => this.cartService.getAllCartItems(id)),
       tap((items) => {
+        this.items = items;
         this.getTotalPrice(items);
       })
     );

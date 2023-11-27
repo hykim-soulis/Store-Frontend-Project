@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { Observable, switchMap, tap } from 'rxjs';
 import { Cart } from '../Models/CartItem.model';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-cart',

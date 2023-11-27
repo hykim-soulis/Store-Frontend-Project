@@ -16,7 +16,7 @@ Store A is Angular application that allows users to view a list of available pro
 
 ### Backend API
 
-For the backend API, you should see the (Store-Backend-Project)[https://github.com/hykim-soulis/Store-Backend-Project] and run the project in local port 8000.
+For the backend API, you should see the [Store-Backend-Project](https://github.com/hykim-soulis/Store-Backend-Project) and run the project in local port 8000.
 
 ### What I've learned
 

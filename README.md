@@ -1,27 +1,53 @@
-# MyStore
+# Store A
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
+# Store A Project
 
-## Development server
+Store A is Angular application that allows users to view a list of available products to purchase, add them to a shopping cart, and ultimately complete the checkout process.
+This is a project for Udacity Full Stack JavaScript Developer Nanodegree Program.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Project description
 
-## Code scaffolding
+### Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Products list page**, which displays the available products for the user to choose and add to their cart (in various quantities)
+- **Product details page**, which displays more information about any particular product
+- **My cart**, which includes the products that the user has added to their cart
+- **Check-out**, using stripe
+- **Order confirmation page**, which shows the outcome after the user completes the checkout process
 
-## Build
+### What I've learned
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Angular
+- Bootstrap
+- Typescript
+- Stripe API
 
-## Running unit tests
+### Live demo link
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+[]()
 
-## Running end-to-end tests
+## Installation and Startup
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Clone the repository
 
-## Further help
+```bash
+  git clone https://github.com/hykim-soulis/Store-Frontend-Project.git
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+2. Install the project with npm
+
+```bash
+  npm install
+```
+
+3. Build the project
+
+```bash
+  npm run build
+```
+
+4. Start the project
+
+```bash
+  npm run start
+```

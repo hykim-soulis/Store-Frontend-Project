@@ -2,8 +2,7 @@
 
 # Store A Project
 
-Store A is Angular application that allows users to view a list of available products to purchase, add them to a shopping cart, and ultimately complete the checkout process.
-This is a project for Udacity Full Stack JavaScript Developer Nanodegree Program.
+Store A is Angular application that allows users to view a list of available products to purchase, add them to a shopping cart, and ultimately complete the checkout process with stripe api.
 
 ## Project description
 
@@ -15,16 +14,16 @@ This is a project for Udacity Full Stack JavaScript Developer Nanodegree Program
 - **Check-out**, using stripe
 - **Order confirmation page**, which shows the outcome after the user completes the checkout process
 
+### Backend API
+
+For the backend API, you should see the (Store-Backend-Project)[https://github.com/hykim-soulis/Store-Backend-Project] and run the project in local port 8000.
+
 ### What I've learned
 
 - Angular
 - Bootstrap
 - Typescript
 - Stripe API
-
-### Live demo link
-
-[]()
 
 ## Installation and Startup
 
